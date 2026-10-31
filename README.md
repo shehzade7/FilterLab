@@ -1,13 +1,16 @@
 # FilterLab
 
-A personal iOS photo filter app (SwiftUI + Core Image): grain, VHS, glitch, light leaks, vintage, dreamy, cinematic and more, with strength and adjustment sliders.
+A personal Android photo filter app (Kotlin + Jetpack Compose), laid out for tablets.
 
-## Get the app on your iPhone
+- 20 effects with live thumbnails: Grain, VHS, Glitch, Leak, Prism, Vintage, Faded, Dust, Dreamy, Glow, Cinema, Duotone, Warm, Cool, Pop, Mirror, Pixel, Mono, Noir
+- Strength slider, Adjust panel (brightness, contrast, saturation, warmth)
+- Retro date stamp and polaroid frame
+- Hold the photo to compare with the original
+- Gallery or camera input; saves full quality to Pictures/FilterLab
 
-1. Open the repo's **Actions** tab → latest **Build IPA** run → download **FilterLab-ipa** and unzip it.
-2. Install [Sideloadly](https://sideloadly.io) on Windows (plus iTunes/iCloud from Apple's site, not the Microsoft Store).
-3. Plug in the iPhone, drag `FilterLab.ipa` into Sideloadly, enter your Apple ID, click **Start**.
-4. On the iPhone: Settings → General → VPN & Device Management → trust your Apple ID.
-   On iOS 16+ also turn on Settings → Privacy & Security → **Developer Mode**.
+## Install
 
-With a free Apple ID the app must be re-signed every 7 days (repeat step 3).
+1. Open the repo's **Actions** tab, then the latest **Build APK** run, and download **FilterLab-apk**.
+2. Copy `FilterLab.apk` to the tablet, tap it, and allow "Install unknown apps" when asked.
+
+Each build is signed with a fresh debug key, so uninstall the old version before installing a new one.

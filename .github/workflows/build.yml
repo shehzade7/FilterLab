@@ -1,4 +1,4 @@
-name: Build IPA
+name: Build APK
 
 on:
   push:
@@ -7,31 +7,26 @@ on:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install XcodeGen
-        run: brew install xcodegen
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
 
-      - name: Generate Xcode project
-        run: xcodegen generate
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
 
-      - name: Build (unsigned)
-        run: |
-          xcodebuild -project FilterLab.xcodeproj -target FilterLab \
-            -configuration Release -sdk iphoneos \
-            SYMROOT="$PWD/build" \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
-            build
+      - name: Build APK
+        run: gradle assembleDebug --no-daemon
 
-      - name: Package IPA
-        run: |
-          mkdir Payload
-          cp -R build/Release-iphoneos/FilterLab.app Payload/
-          zip -qry FilterLab.ipa Payload
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk FilterLab.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: FilterLab-ipa
-          path: FilterLab.ipa
+          name: FilterLab-apk
+          path: FilterLab.apk
