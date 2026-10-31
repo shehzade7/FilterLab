@@ -1,0 +1,6 @@
+*.xcodeproj/
+FilterLab/Info.plist
+build/
+Payload/
+*.ipa
+.DS_Store
